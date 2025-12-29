@@ -2,9 +2,6 @@ import streamlit as st
 from google import genai
 from google.genai import types
 
-# -------------------------------------------------
-# Streamlit Page Configuration
-# -------------------------------------------------
 st.set_page_config(
     page_title="Public Library Services Explainer Bot",
     page_icon="📚",
@@ -14,9 +11,6 @@ st.set_page_config(
 st.title("📚 Public Library Services & Usage Explainer Bot")
 st.caption("Explain-only AI assistant for public library services")
 
-# -------------------------------------------------
-# SYSTEM PROMPT (STRICT BOUNDARIES)
-# -------------------------------------------------
 SYSTEM_PROMPT = """
 You are a Public Library Services & Usage Explainer Bot.
 Your role is strictly informational.
@@ -37,26 +31,17 @@ If asked to perform actions, politely refuse and explain that you only provide i
 Use simple, friendly language.
 """
 
-# -------------------------------------------------
-# Gemini Client (PASTE KEY LOCALLY IF NEEDED)
-# -------------------------------------------------
 client = genai.Client(
     api_key="AIzaSyD-9GNwa9i42Dbk0IEzuaGkbM0fSA9xoes"  # ⚠️ Paste locally only
 )
 
 MODEL_NAME = "gemini-3-flash-preview"
 
-# -------------------------------------------------
-# User Input UI
-# -------------------------------------------------
 user_input = st.text_input(
     "Ask about library services:",
     placeholder="How does book borrowing work?"
 )
 
-# -------------------------------------------------
-# Generate Response
-# -------------------------------------------------
 if st.button("Explain") and user_input:
     with st.spinner("Explaining..."):
         contents = [
@@ -93,9 +78,6 @@ if st.button("Explain") and user_input:
         st.success("Explanation")
         st.write(response_text)
 
-# -------------------------------------------------
-# Footer
-# -------------------------------------------------
 st.markdown("---")
 st.caption(
     "⚠️ This bot provides explanations only. "
